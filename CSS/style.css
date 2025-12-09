@@ -1,0 +1,835 @@
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, #0c0a1d 0%, #1a1630 50%, #2d1b4e 100%);
+    color: #e4d7ff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(120, 80, 200, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(200, 120, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(100, 60, 180, 0.03) 0%, transparent 30%);
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.main-header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #5d3bad;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.game-title {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 4.5rem;
+    color: #f0e6ff;
+    text-shadow: 
+        0 0 10px rgba(157, 78, 221, 0.8),
+        0 0 20px rgba(157, 78, 221, 0.5),
+        0 0 30px rgba(157, 78, 221, 0.3);
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.mystic {
+    color: #b57bfe;
+}
+
+.subtitle {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.5rem;
+    color: #c9b2f0;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.tarot-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tarot-card {
+    width: 50px;
+    height: 70px;
+    background: linear-gradient(145deg, #2d1b4e, #1a1630);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #b57bfe;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #5d3bad;
+    transition: transform 0.3s ease;
+}
+
+.tarot-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(157, 78, 221, 0.4);
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.game-logo {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.logo-symbol {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 5rem;
+    color: #f0e6ff;
+    text-shadow: 
+        0 0 10px rgba(157, 78, 221, 0.8),
+        0 0 20px rgba(157, 78, 221, 0.5);
+    margin-bottom: 10px;
+}
+
+.logo-text {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.2rem;
+    color: #c9b2f0;
+    letter-spacing: 2px;
+}
+
+/* Menu de Opções */
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 60px;
+}
+
+.menu-btn {
+    padding: 18px 30px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    letter-spacing: 1px;
+}
+
+.play-btn {
+    background: linear-gradient(145deg, #5d3bad, #3d2a7a);
+    color: #f0e6ff;
+    box-shadow: 0 6px 0 #2d1b4e, 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.play-btn:hover {
+    background: linear-gradient(145deg, #6b45c9, #4a3494);
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 #2d1b4e, 0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+.about-btn {
+    background: linear-gradient(145deg, #2d1b4e, #1a1630);
+    color: #c9b2f0;
+    border: 2px solid #5d3bad;
+    box-shadow: 0 6px 0 #1a112e, 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.about-btn:hover {
+    background: linear-gradient(145deg, #3d2a7a, #2d1b4e);
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 #1a112e, 0 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+.skip-btn {
+    background: transparent;
+    color: #a992e0;
+    border: 2px solid #5d3bad;
+    box-shadow: 0 6px 0 transparent, 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skip-btn:hover {
+    background: rgba(93, 59, 173, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 9px 0 transparent, 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Informações do Jogo */
+.game-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.info-card {
+    background: rgba(26, 22, 48, 0.7);
+    border: 1px solid #5d3bad;
+    border-radius: 10px;
+    padding: 25px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(93, 59, 173, 0.3);
+}
+
+.info-card i {
+    font-size: 2.5rem;
+    color: #b57bfe;
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    font-size: 1.5rem;
+    color: #f0e6ff;
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif;
+}
+
+.info-card p {
+    font-size: 1rem;
+    color: #c9b2f0;
+    line-height: 1.5;
+}
+
+/* Footer */
+.main-footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 2px solid #5d3bad;
+    margin-top: 50px;
+    font-size: 1rem;
+    color: #a992e0;
+}
+
+.team {
+    font-family: 'MedievalSharp', cursive;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #c9b2f0;
+}
+
+/* Modal Sobre */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #1a1630, #0c0a1d);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    border: 2px solid #5d3bad;
+    box-shadow: 0 0 40px rgba(157, 78, 221, 0.5);
+    position: relative;
+    color: #e4d7ff;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    color: #b57bfe;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #f0e6ff;
+}
+
+.modal-content h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: #f0e6ff;
+    margin-bottom: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-body {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.modal-body p {
+    margin-bottom: 20px;
+}
+
+.modal-body ul {
+    margin: 25px 0 25px 30px;
+}
+
+.modal-body li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.modal-body li i {
+    color: #b57bfe;
+    margin-top: 5px;
+}
+
+.modal-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #5d3bad;
+    font-style: italic;
+    text-align: center;
+    color: #c9b2f0;
+}
+
+/* Estilos para as fases do jogo */
+.phase-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(26, 22, 48, 0.8);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #5d3bad;
+}
+
+.phase-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: #f0e6ff;
+}
+
+.phase-info {
+    display: flex;
+    gap: 20px;
+}
+
+.info-box {
+    background: rgba(45, 27, 78, 0.7);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #5d3bad;
+    text-align: center;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: #a992e0;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 1.3rem;
+    color: #f0e6ff;
+    font-weight: bold;
+}
+
+.game-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.game-scene {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(26, 22, 48, 0.7);
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid #5d3bad;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.scene-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f0e6ff;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #5d3bad;
+}
+
+.character-area {
+    height: 200px;
+    background: rgba(12, 10, 29, 0.5);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.character {
+    width: 80px;
+    height: 120px;
+    background: linear-gradient(145deg, #5d3bad, #3d2a7a);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+.character::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.card-area {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tarot-card-game {
+    width: 70px;
+    height: 100px;
+    background: linear-gradient(145deg, #2d1b4e, #1a1630);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #b57bfe;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #5d3bad;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tarot-card-game:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(157, 78, 221, 0.4);
+}
+
+.tarot-card-game.revealed {
+    background: linear-gradient(145deg, #5d3bad, #3d2a7a);
+    color: #f0e6ff;
+}
+
+.game-controls {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(26, 22, 48, 0.7);
+    border-radius: 15px;
+    padding: 25px;
+    border: 2px solid #5d3bad;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.controls-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: #f0e6ff;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #5d3bad;
+}
+
+.puzzle-area {
+    margin-bottom: 30px;
+}
+
+.puzzle-title {
+    font-size: 1.3rem;
+    color: #c9b2f0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.puzzle-box {
+    background: rgba(12, 10, 29, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #5d3bad;
+    margin-bottom: 20px;
+}
+
+.encrypted-text {
+    font-family: monospace;
+    font-size: 1.8rem;
+    color: #f0e6ff;
+    text-align: center;
+    letter-spacing: 3px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.solution-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 1.1rem;
+    color: #c9b2f0;
+}
+
+.input-group input, .input-group select {
+    padding: 12px 15px;
+    background: rgba(12, 10, 29, 0.8);
+    border: 1px solid #5d3bad;
+    border-radius: 8px;
+    color: #f0e6ff;
+    font-size: 1.1rem;
+    font-family: 'Cinzel', serif;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #b57bfe;
+    box-shadow: 0 0 10px rgba(181, 123, 254, 0.5);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.game-btn {
+    flex: 1;
+    padding: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.decrypt-btn {
+    background: linear-gradient(145deg, #5d3bad, #3d2a7a);
+    color: #f0e6ff;
+}
+
+.decrypt-btn:hover {
+    background: linear-gradient(145deg, #6b45c9, #4a3494);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(93, 59, 173, 0.4);
+}
+
+.hint-btn {
+    background: linear-gradient(145deg, #2d1b4e, #1a1630);
+    color: #c9b2f0;
+    border: 1px solid #5d3bad;
+}
+
+.hint-btn:hover {
+    background: linear-gradient(145deg, #3d2a7a, #2d1b4e);
+    transform: translateY(-3px);
+}
+
+.next-btn {
+    background: linear-gradient(145deg, #1a7a3d, #0e5a2a);
+    color: #f0e6ff;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.next-btn:hover {
+    background: linear-gradient(145deg, #1f8c46, #116b32);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(31, 140, 70, 0.4);
+}
+
+.next-btn:disabled {
+    background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.hint-box {
+    background: rgba(45, 27, 78, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 25px;
+    border: 1px solid #5d3bad;
+    display: none;
+}
+
+.hint-box.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.hint-title {
+    font-size: 1.2rem;
+    color: #f0e6ff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hint-text {
+    color: #c9b2f0;
+    line-height: 1.6;
+}
+
+.feedback-message {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+.feedback-message.success {
+    background: rgba(31, 140, 70, 0.2);
+    border: 1px solid #1f8c46;
+    color: #a3f7b8;
+    display: block;
+}
+
+.feedback-message.error {
+    background: rgba(140, 31, 31, 0.2);
+    border: 1px solid #8c1f1f;
+    color: #f7a3a3;
+    display: block;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.nav-btn {
+    padding: 12px 25px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    background: linear-gradient(145deg, #2d1b4e, #1a1630);
+    color: #c9b2f0;
+    border: 1px solid #5d3bad;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-btn:hover {
+    background: linear-gradient(145deg, #3d2a7a, #2d1b4e);
+    transform: translateY(-3px);
+}
+
+/* Matriz específica para fases 2 e 3 */
+.matrix-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.matrix-display {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.matrix-cell {
+    width: 70px;
+    height: 70px;
+    background: rgba(12, 10, 29, 0.8);
+    border: 2px solid #5d3bad;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #f0e6ff;
+    font-family: monospace;
+}
+
+.matrix-inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 200px;
+}
+
+.matrix-inputs input {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    background: rgba(12, 10, 29, 0.8);
+    border: 1px solid #5d3bad;
+    border-radius: 8px;
+    color: #f0e6ff;
+    font-size: 1.2rem;
+    font-family: monospace;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 3rem;
+    }
+    
+    .logo-symbol {
+        font-size: 3.5rem;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .info-card {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .phase-info {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .menu-btn {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+    }
+    
+    .tarot-cards {
+        gap: 10px;
+    }
+    
+    .tarot-card {
+        width: 40px;
+        height: 56px;
+        font-size: 1.4rem;
+    }
+}

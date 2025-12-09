@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 3 - Missão Mística</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos adicionais para as imagens e matrizes */
+        .scene-background {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-img {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            z-index: 2;
+        }
+        
+        .tarot-card-img {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #5d3bad;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 3;
+            position: relative;
+        }
+        
+        .tarot-card-img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(93, 59, 173, 0.6);
+        }
+        
+        .card-placeholder {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(145deg, rgba(45, 27, 78, 0.7), rgba(26, 22, 48, 0.7));
+            border-radius: 8px;
+            border: 2px dashed #5d3bad;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d3bad;
+            font-size: 2rem;
+        }
+        
+        /* Estilos específicos para fase 3 reformulada */
+        .two-step-game {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .step-container {
+            background: rgba(26, 22, 48, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #5d3bad;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f0e6ff;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #5d3bad;
+        }
+        
+        .step-number {
+            background: #5d3bad;
+            color: #f0e6ff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Matriz simplificada */
+        .simple-matrix {
+            background: rgba(12, 10, 29, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #b57bfe;
+        }
+        
+        .matrix-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .matrix-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .matrix-cell {
+            width: 70px;
+            height: 70px;
+            background: rgba(45, 27, 78, 0.8);
+            border: 2px solid #5d3bad;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #f0e6ff;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        
+        .matrix-cell.highlight {
+            background: rgba(93, 59, 173, 0.5);
+            border-color: #b57bfe;
+            box-shadow: 0 0 15px rgba(181, 123, 254, 0.5);
+        }
+        
+        .matrix-formula {
+            font-family: monospace;
+            font-size: 1.3rem;
+            color: #c9b2f0;
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        
+        /* Inputs separados */
+        .decryption-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-with-button {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .input-with-button .input-group {
+            flex: 1;
+        }
+        
+        /* Tabela de conversão simplificada */
+        .mini-table {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+            background: rgba(12, 10, 29, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .mini-cell {
+            text-align: center;
+            padding: 8px 5px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .mini-cell.letter {
+            background: rgba(93, 59, 173, 0.3);
+            color: #f0e6ff;
+            font-weight: bold;
+        }
+        
+        .mini-cell.number {
+            background: rgba(181, 123, 254, 0.2);
+            color: #c9b2f0;
+            font-family: monospace;
+        }
+        
+        /* Exemplo interativo */
+        .interactive-example {
+            background: rgba(45, 27, 78, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #5d3bad;
+        }
+        
+        .example-title {
+            color: #f0e6ff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .example-step {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(12, 10, 29, 0.9);
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .example-result {
+            color: #a3f7b8;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        /* Mensagem final */
+        .final-message-box {
+            background: rgba(31, 140, 70, 0.1);
+            border: 2px solid #1f8c46;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .final-message-box.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .final-title {
+            color: #a3f7b8;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="phase-container">
+        <header class="game-header">
+            <h1 class="phase-title">Fase Final: O Enigma Reverso</h1>
+            <div class="phase-info">
+                <div class="info-box">
+                    <div class="info-label">Fase</div>
+                    <div class="info-value">3/3</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Cartas</div>
+                    <div class="info-value" id="cardCount">0/5</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Dificuldade</div>
+                    <div class="info-value">Desafio</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="game-area">
+            <div class="game-scene">
+                <h2 class="scene-title">Câmara das Transformações</h2>
+                <div class="character-area">
+                    <div class="scene-background" id="sceneBackground" style="background-image: url('IMAGE/cenariofase3.png');">
+                        <img src="IMAGE/personagem.png" alt="Personagem" class="character-img" id="character">
+                    </div>
+                </div>
+                
+                <div class="card-area">
+                    <h3 style="color: #c9b2f0; margin-bottom: 15px; text-align: center;">
+                        <i class="fas fa-cards"></i> Carta Final
+                    </h3>
+                    <div class="cards-container">
+                        <div id="cardSlot">
+                            <img src="IMAGE/cartatorreinvertida.png" alt="Carta da Torre Invertida" class="tarot-card-img" onclick="revealCard(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <h2 class="controls-title">O Enigma da Torre</h2>
+                
+                <div class="two-step-game">
+                    <!-- PASSO 1: Decifrar a mensagem criptografada -->
+                    <div class="step-container">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <h3>Decifre a Mensagem Criptografada</h3>
+                        </div>
+                        
+                        <div class="puzzle-area">
+                            <h4 class="puzzle-title"><i class="fas fa-lock"></i> Mensagem Criptografada:</h4>
+                            <div class="puzzle-box">
+                                <div class="encrypted-text" id="encryptedText">JWHQWLQVRU</div>
+                                <p class="hint-text">Esta mensagem foi cifrada usando uma matriz 2x2 simples.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="simple-matrix">
+                            <h4 style="color: #f0e6ff; text-align: center; margin-bottom: 15px;">
+                                <i class="fas fa-calculator"></i> Matriz de Criptografia
+                            </h4>
+                            
+                            <div class="matrix-visual">
+                                <div class="matrix-row">
+                                    <div class="matrix-cell highlight">2</div>
+                                    <div class="matrix-cell">1</div>
+                                </div>
+                                <div class="matrix-row">
+                                    <div class="matrix-cell">1</div>
+                                    <div class="matrix-cell">1</div>
+                                </div>
+                            </div>
+                            
+                            <p style="color: #a992e0; text-align: center; margin: 10px 0;">
+                                Matriz = [[2, 1], [1, 1]]
+                            </p>
+                            
+                            <div class="matrix-formula">
+                                Para decifrar: Use a matriz inversa [[1, -1], [-1, 2]]
+                            </div>
+                        </div>
+                        
+                        <div class="mini-table">
+                            <div class="mini-cell letter">A=</div>
+                            <div class="mini-cell number">0</div>
+                            <div class="mini-cell letter">B=</div>
+                            <div class="mini-cell number">1</div>
+                            <div class="mini-cell letter">C=</div>
+                            <div class="mini-cell number">2</div>
+                            
+                            <div class="mini-cell letter">D=</div>
+                            <div class="mini-cell number">3</div>
+                            <div class="mini-cell letter">E=</div>
+                            <div class="mini-cell number">4</div>
+                            <div class="mini-cell letter">F=</div>
+                            <div class="mini-cell number">5</div>
+                            
+                            <div class="mini-cell letter">G=</div>
+                            <div class="mini-cell number">6</div>
+                            <div class="mini-cell letter">H=</div>
+                            <div class="mini-cell number">7</div>
+                            <div class="mini-cell letter">I=</div>
+                            <div class="mini-cell number">8</div>
+                            
+                            <div class="mini-cell letter">J=</div>
+                            <div class="mini-cell number">9</div>
+                            <div class="mini-cell letter">K=</div>
+                            <div class="mini-cell number">10</div>
+                            <div class="mini-cell letter">L=</div>
+                            <div class="mini-cell number">11</div>
+                        </div>
+                        
+                        <div class="interactive-example">
+                            <div class="example-title">
+                                <i class="fas fa-graduation-cap"></i> Exemplo Prático
+                            </div>
+                            
+                            <div class="example-step">
+                                <strong>Vamos decifrar as duas primeiras letras "JW":</strong><br>
+                                1. J = 9, W = 22<br>
+                                2. Use matriz inversa [[1, -1], [-1, 2]]<br>
+                                3. Cálculo:<br>
+                                &nbsp;&nbsp;Primeira letra: (1×9 + (-1)×22) mod 26 = (9 - 22) mod 26 = (-13) mod 26 = 13 → N<br>
+                                &nbsp;&nbsp;Segunda letra: ((-1)×9 + 2×22) mod 26 = (-9 + 44) mod 26 = 35 mod 26 = 9 → J<br>
+                                4. Resultado: "JW" → "NJ"
+                            </div>
+                            
+                            <p style="color: #c9b2f0; margin-top: 10px;">
+                                Continue com o resto da mensagem! A resposta é uma frase em português.
+                            </p>
+                        </div>
+                        
+                        <div class="decryption-inputs">
+                            <div class="input-group">
+                                <label for="decryptedText">
+                                    <i class="fas fa-key"></i> Mensagem Decifrada (em minúsculas, sem espaços):
+                                </label>
+                                <div class="input-with-button">
+                                    <input type="text" id="decryptedText" placeholder="digite aqui a mensagem decifrada">
+                                    <button class="game-btn decrypt-btn" onclick="checkDecryption()" style="padding: 12px 20px;">
+                                        <i class="fas fa-check"></i> Verificar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hint-box" id="decryptionHint">
+                            <h3 class="hint-title"><i class="fas fa-lightbulb"></i> Dica Importante</h3>
+                            <p class="hint-text">A mensagem decifrada será: <strong>"aditrevni errot a"</strong></p>
+                            <p class="hint-text">Mas atenção! Essa ainda não é a resposta final...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- PASSO 2: Encontrar a mensagem final -->
+                    <div class="step-container" id="step2" style="display: none;">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <h3>Encontre a Mensagem Secreta</h3>
+                        </div>
+                        
+                        <div class="puzzle-box" style="background: rgba(45, 27, 78, 0.7);">
+                            <h4 style="color: #f0e6ff; margin-bottom: 15px;">
+                                <i class="fas fa-search"></i> Você decifrou: 
+                                <span id="decryptedResult" style="color: #a3f7b8; font-family: monospace;">aditrevni errot a</span>
+                            </h4>
+                            
+                            <p style="color: #c9b2f0; margin-bottom: 15px;">
+                                Parabéns! Você decifrou a mensagem, mas ainda há um segredo oculto.
+                                Observe atentamente a frase que você encontrou...
+                            </p>
+                            
+                            <div style="background: rgba(12, 10, 29, 0.9); padding: 20px; border-radius: 8px; border: 1px solid #b57bfe;">
+                                <h5 style="color: #f0e6ff; margin-bottom: 10px;">
+                                    <i class="fas fa-eye"></i> O que você nota nesta frase?
+                                </h5>
+                                <div style="font-family: monospace; font-size: 1.4rem; color: #c9b2f0; text-align: center; letter-spacing: 2px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 5px;">
+                                    a d i t r e v n i &nbsp; e r r o t &nbsp; a
+                                </div>
+                                <p style="color: #a992e0; margin-top: 15px; text-align: center;">
+                                    Dica: Leia da direita para a esquerda...
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group" style="margin-top: 25px;">
+                            <label for="finalMessage">
+                                <i class="fas fa-trophy"></i> Mensagem Final (em português correto):
+                            </label>
+                            <input type="text" id="finalMessage" placeholder="digite a mensagem secreta final">
+                            <p style="color: #a992e0; font-size: 0.9rem; margin-top: 5px;">
+                                Esta é a frase que revela o verdadeiro significado do enigma.
+                            </p>
+                        </div>
+                        
+                        <div class="button-group" style="margin-top: 20px;">
+                            <button class="game-btn hint-btn" onclick="showFinalHint()">
+                                <i class="fas fa-question-circle"></i> Preciso de uma Dica
+                            </button>
+                            <button class="game-btn decrypt-btn" onclick="checkFinalMessage()">
+                                <i class="fas fa-flag-checkered"></i> Completar Missão
+                            </button>
+                        </div>
+                        
+                        <div class="hint-box" id="finalHint">
+                            <h3 class="hint-title"><i class="fas fa-lightbulb"></i> Dica Final</h3>
+                            <p class="hint-text">A frase "aditrevni errot a" está escrita de trás para frente!</p>
+                            <p class="hint-text">Tente ler da direita para a esquerda:</p>
+                            <div style="font-family: monospace; font-size: 1.3rem; color: #f0e6ff; text-align: center; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; margin: 10px 0;">
+                                a &nbsp; t o r r e &nbsp; i n v e r t i d a
+                            </div>
+                            <p class="hint-text">Agora escreva em português correto com espaços!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Mensagem de conclusão -->
+                    <div class="final-message-box" id="finalMessageBox">
+                        <div class="final-title">
+                            <i class="fas fa-trophy"></i> MISSÃO CUMPRIDA!
+                        </div>
+                        <p style="color: #c9b2f0; margin-bottom: 20px;">
+                            Você desvendou o enigma final e descobriu o segredo: <strong>"A TORRE INVERTIDA"</strong>
+                        </p>
+                        <p style="color: #a992e0; font-style: italic;">
+                            "A verdadeira sabedoria está em enxergar além das aparências e perceber 
+                            que mesmo o que parece invertido pode revelar grandes verdades."
+                        </p>
+                        <button class="game-btn next-btn" style="margin-top: 20px; background: linear-gradient(145deg, #1f8c46, #0e5a2a);" onclick="completeGame()">
+                            <i class="fas fa-home"></i> Voltar ao Início
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="backBtn" onclick="goToPreviousPhase()">
+                <i class="fas fa-arrow-left"></i> Voltar à Fase 2
+            </button>
+            <div class="puzzle-info">
+                <p><strong>Objetivo Final:</strong> 1) Decifre "aditrevni errot a" 2) Descubra "A TORRE INVERTIDA"</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="JS/script.js"></script>
+    <script src="JS/fase3.js"></script>
+</body>
+</html>

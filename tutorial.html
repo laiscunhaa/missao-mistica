@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial - Missão Mística</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos adicionais para as imagens */
+        .scene-background {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-img {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            z-index: 2;
+        }
+        
+        .tarot-card-img {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #5d3bad;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 3;
+            position: relative;
+        }
+        
+        .tarot-card-img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(93, 59, 173, 0.6);
+        }
+        
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .card-placeholder {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(145deg, rgba(45, 27, 78, 0.7), rgba(26, 22, 48, 0.7));
+            border-radius: 8px;
+            border: 2px dashed #5d3bad;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d3bad;
+            font-size: 2rem;
+        }
+        
+        .cipher-explanation {
+            background: rgba(26, 22, 48, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #5d3bad;
+        }
+        
+        .cipher-example {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 1.5rem;
+            color: #f0e6ff;
+        }
+        
+        .arrow {
+            color: #b57bfe;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="phase-container">
+        <header class="game-header">
+            <h1 class="phase-title">Tutorial: A Cifra de César</h1>
+            <div class="phase-info">
+                <div class="info-box">
+                    <div class="info-label">Fase</div>
+                    <div class="info-value">Tutorial</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Cartas</div>
+                    <div class="info-value" id="cardCount">0/5</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Dificuldade</div>
+                    <div class="info-value">Fácil</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="game-area">
+            <div class="game-scene">
+                <h2 class="scene-title">Templo do Conhecimento</h2>
+                <div class="character-area">
+                    <div class="scene-background" id="sceneBackground" style="background-image: url(IMAGE/cenariotutorial.png);">
+                        <img src="IMAGE/personagem.png" alt="Personagem" class="character-img" id="character">
+                    </div>
+                </div>
+                
+                <div class="card-area">
+                    <h3 style="color: #c9b2f0; margin-bottom: 15px; text-align: center;">
+                        <i class="fas fa-cards"></i> Carta do Tutorial
+                    </h3>
+                    <div class="cards-container">
+                        <div id="cardSlot">
+                            <img src="IMAGE/cartatutorial.png" alt="Carta do Tutorial" class="tarot-card-img" onclick="revealCard(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <h2 class="controls-title">Decifre a Mensagem</h2>
+                
+                <div class="cipher-explanation">
+                    <h3><i class="fas fa-info-circle"></i> Cifra de César (Deslocamento: 3)</h3>
+                    <p>A Cifra de César desloca cada letra 3 posições no alfabeto:</p>
+                    
+                    <div class="cipher-example">
+                        <div>A <span class="arrow">→</span> D</div>
+                        <div>B <span class="arrow">→</span> E</div>
+                        <div>C <span class="arrow">→</span> F</div>
+                        <div>... <span class="arrow">→</span> ...</div>
+                        <div>X <span class="arrow">→</span> A</div>
+                        <div>Y <span class="arrow">→</span> B</div>
+                        <div>Z <span class="arrow">→</span> C</div>
+                    </div>
+                    
+                    <p><strong>Para decifrar:</strong> Faça o processo inverso (volte 3 posições).</p>
+                </div>
+                
+                <div class="puzzle-area">
+                    <h3 class="puzzle-title"><i class="fas fa-lock"></i> Mensagem Criptografada:</h3>
+                    <div class="puzzle-box">
+                        <div class="encrypted-text" id="encryptedText">WXWRXLD</div>
+                        <p class="hint-text">Esta mensagem foi cifrada usando a Cifra de César com deslocamento de 3 posições.</p>
+                        <p class="hint-text"><strong>Dica:</strong> A palavra tem 7 letras e começa com T</p>
+                    </div>
+                </div>
+                
+                <div class="solution-area">
+                    <div class="input-group">
+                        <label for="decryptedText">Sua Resposta:</label>
+                        <input type="text" id="decryptedText" placeholder="Digite a mensagem decifrada">
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="game-btn decrypt-btn" onclick="checkCaesarSolution()">
+                            <i class="fas fa-key"></i> Decifrar
+                        </button>
+                        <button class="game-btn hint-btn" onclick="showHint()">
+                            <i class="fas fa-lightbulb"></i> Mostrar Alfabeto
+                        </button>
+                    </div>
+                    
+                    <button class="game-btn next-btn" id="nextBtn" disabled onclick="goToNextPhase()">
+                        <i class="fas fa-arrow-right"></i> Ir para Fase 1
+                    </button>
+                </div>
+                
+                <div class="hint-box" id="hintBox">
+                    <h3 class="hint-title"><i class="fas fa-lightbulb"></i> Alfabeto Cifrado</h3>
+                    <div style="display: grid; grid-template-columns: repeat(13, 1fr); gap: 10px; margin: 15px 0;">
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">A → D</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(0 → 3)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">B → E</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(1 → 4)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">C → F</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(2 → 5)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">D → G</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(3 → 6)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">E → H</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(4 → 7)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">F → I</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(5 → 8)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">G → J</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(6 → 9)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">H → K</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(7 → 10)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">I → L</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(8 → 11)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">J → M</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(9 → 12)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">K → N</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(10 → 13)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">L → O</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(11 → 14)</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: bold; color: #f0e6ff;">M → N</div>
+                            <div style="font-size: 0.9rem; color: #c9b2f0;">(12 → 15)</div>
+                        </div>
+                    </div>
+                    <p class="hint-text">Para decifrar WXWRXLD, cada letra volta 3 posições: W→T, X→U, W→T, R→O, X→U, L→I, D→A</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="backBtn" onclick="goToPreviousPhase()">
+                <i class="fas fa-arrow-left"></i> Voltar ao Menu
+            </button>
+           
+        </div>
+    </div>
+    
+    <script src="JS/script.js"></script>
+    <script src="JS/tutorial.js"></script>
+</body>
+</html>

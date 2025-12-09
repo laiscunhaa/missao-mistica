@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 2 - Missão Mística</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos adicionais para as imagens e matrizes */
+        .scene-background {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .character-img {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+            z-index: 2;
+        }
+        
+        .tarot-card-img {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #5d3bad;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 3;
+            position: relative;
+        }
+        
+        .tarot-card-img:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(93, 59, 173, 0.6);
+        }
+        
+        .card-placeholder {
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(145deg, rgba(45, 27, 78, 0.7), rgba(26, 22, 48, 0.7));
+            border-radius: 8px;
+            border: 2px dashed #5d3bad;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d3bad;
+            font-size: 2rem;
+        }
+        
+        /* Estilos para tabela de referência */
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: rgba(12, 10, 29, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .reference-table th {
+            background: #5d3bad;
+            color: #f0e6ff;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .reference-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #3d2a7a;
+            color: #c9b2f0;
+        }
+        
+        .reference-table tr:nth-child(even) {
+            background: rgba(26, 22, 48, 0.5);
+        }
+        
+        /* Estilos para matriz */
+        .matrix-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .matrix-display {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .matrix-cell {
+            width: 60px;
+            height: 60px;
+            background: rgba(12, 10, 29, 0.9);
+            border: 2px solid #5d3bad;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #f0e6ff;
+            font-family: monospace;
+        }
+        
+        .matrix-inputs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 150px;
+            margin-top: 10px;
+        }
+        
+        .matrix-inputs input {
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            background: rgba(12, 10, 29, 0.9);
+            border: 1px solid #5d3bad;
+            border-radius: 8px;
+            color: #f0e6ff;
+            font-size: 1.2rem;
+            font-family: monospace;
+        }
+        
+        .matrix-inputs input:focus {
+            outline: none;
+            border-color: #b57bfe;
+            box-shadow: 0 0 10px rgba(181, 123, 254, 0.5);
+        }
+        
+        .matrix-equation {
+            font-family: monospace;
+            font-size: 1.3rem;
+            background: rgba(45, 27, 78, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            color: #f0e6ff;
+        }
+        
+        .step-by-step {
+            background: rgba(26, 22, 48, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #b57bfe;
+        }
+        
+        .step-title {
+            color: #f0e6ff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .example-calculation {
+            background: rgba(12, 10, 29, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: #c9b2f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="phase-container">
+        <header class="game-header">
+            <h1 class="phase-title">Fase 2: Criptografia Matricial</h1>
+            <div class="phase-info">
+                <div class="info-box">
+                    <div class="info-label">Fase</div>
+                    <div class="info-value">2/4</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Cartas</div>
+                    <div class="info-value" id="cardCount">0/5</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">Dificuldade</div>
+                    <div class="info-value">Difícil</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="game-area">
+            <div class="game-scene">
+                <h2 class="scene-title">Laboratório Matemático</h2>
+                <div class="character-area">
+                    <div class="scene-background" id="sceneBackground" style="background-image: url('IMAGE/cenariofase2.png');">
+                        <img src="IMAGE/personagem.png" alt="Personagem" class="character-img" id="character">
+                    </div>
+                </div>
+                
+                <div class="card-area">
+                    <h3 style="color: #c9b2f0; margin-bottom: 15px; text-align: center;">
+                        <i class="fas fa-cards"></i> Carta da Fase 2
+                    </h3>
+                    <div class="cards-container">
+                        <div id="cardSlot">
+                            <img src="IMAGE/cartafase2.png" alt="Carta da Fase 2" class="tarot-card-img" onclick="revealCard(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <h2 class="controls-title">Decifre com Matrizes</h2>
+                
+                <div class="step-by-step">
+                    <h3 class="step-title"><i class="fas fa-calculator"></i> Como funciona a Cifra de Matriz 2x2</h3>
+                    <p style="color: #c9b2f0; margin-bottom: 15px;">1. Converta cada letra em número (A=0, B=1, ..., Z=25, Espaço=26)</p>
+                    <p style="color: #c9b2f0; margin-bottom: 15px;">2. Separe os números em pares [x, y]</p>
+                    <p style="color: #c9b2f0; margin-bottom: 15px;">3. Multiplique pela matriz: <br>
+                        <span style="font-family: monospace;">[x'] = [a b] [x] mod 27</span><br>
+                        <span style="font-family: monospace;">[y']   [c d] [y]</span>
+                    </p>
+                    
+                    <table class="reference-table">
+                        <thead>
+                            <tr>
+                                <th>Letra</th>
+                                <th>Número</th>
+                                <th>Letra</th>
+                                <th>Número</th>
+                                <th>Letra</th>
+                                <th>Número</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alphabetTableBody">
+                            <!-- A tabela será preenchida por JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="puzzle-area">
+                    <h3 class="puzzle-title"><i class="fas fa-lock"></i> Mensagem Criptografada:</h3>
+                    <div class="puzzle-box">
+                        <div class="encrypted-text" id="encryptedText">JMDASCPOGB</div>
+                        <p class="hint-text">Esta mensagem foi cifrada usando uma matriz 2x2. A mensagem original é "AOCONTRARIO" (11 letras).</p>
+                    </div>
+                </div>
+                
+                <div class="matrix-container">
+                    <h3 style="color: #c9b2f0; margin-bottom: 10px;">Matriz de Criptografia:</h3>
+                    <div class="matrix-display">
+                        <div class="matrix-cell" id="matrixA">3</div>
+                        <div class="matrix-cell" id="matrixB">2</div>
+                        <div class="matrix-cell" id="matrixC">1</div>
+                        <div class="matrix-cell" id="matrixD">1</div>
+                    </div>
+                    <p style="color: #a992e0; font-size: 0.9rem; margin-top: 5px;">Matriz = [[3, 2], [1, 1]]</p>
+                </div>
+                
+                <div class="solution-area">
+                    <div class="input-group">
+                        <label for="decryptedText">Sua Resposta:</label>
+                        <input type="text" id="decryptedText" placeholder="Digite a mensagem decifrada">
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="game-btn decrypt-btn" onclick="checkMatrixSolution()">
+                            <i class="fas fa-key"></i> Decifrar
+                        </button>
+                        <button class="game-btn hint-btn" onclick="showCalculationExample()">
+                            <i class="fas fa-calculator"></i> Ver Cálculo
+                        </button>
+                    </div>
+                    
+                    <button class="game-btn next-btn" id="nextBtn" disabled onclick="goToNextPhase()">
+                        <i class="fas fa-arrow-right"></i> Ir para Fase 3
+                    </button>
+                </div>
+                
+                <div class="hint-box" id="hintBox">
+                    <h3 class="hint-title"><i class="fas fa-lightbulb"></i> Exemplo de Cálculo</h3>
+                    <p class="hint-text">Vamos decifrar as primeiras letras "JM":</p>
+                    
+                    <div class="example-calculation">
+                        <strong>Passo 1:</strong> Converter para números<br>
+                        J = 9, M = 12<br><br>
+                        
+                        <strong>Passo 2:</strong> Encontrar matriz inversa de [[3, 2], [1, 1]] mod 27<br>
+                        Determinante = (3×1 - 2×1) = 1<br>
+                        Inverso do determinante = 1 (pois 1×1 mod 27 = 1)<br>
+                        Matriz inversa = [[1, -2], [-1, 3]] mod 27 = [[1, 25], [26, 3]]<br><br>
+                        
+                        <strong>Passo 3:</strong> Multiplicar [9, 12] pela matriz inversa<br>
+                        x' = (1×9 + 25×12) mod 27 = (9 + 300) mod 27 = 309 mod 27 = 15<br>
+                        y' = (26×9 + 3×12) mod 27 = (234 + 36) mod 27 = 270 mod 27 = 0<br><br>
+                        
+                        <strong>Passo 4:</strong> Converter números de volta para letras<br>
+                        15 = P, 0 = A<br>
+                        Resultado: "PA" 
+                    </div>
+                    
+                    <p class="hint-text" style="margin-top: 15px;">Dica: A mensagem começa com "AO"</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn" id="backBtn" onclick="goToPreviousPhase()">
+                <i class="fas fa-arrow-left"></i> Voltar à Fase 1
+            </button>
+        </div>
+    </div>
+    
+    <script src="JS/script.js"></script>
+    <script src="JS/fase2.js"></script>
+</body>
+</html>
