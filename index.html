@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,18 @@
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <audio controls>
+        <source src="videoplayback (1).mp3" type="audio/mpeg">
+        <source src="videoplayback (1).mp3" type="audio/ogg">
+        Seu navegador não suporta áudio.
+    </audio>
     <div class="container">
         <header class="main-header">
             <h1 class="game-title">MISSÃO <span class="mystic">MÍSTICA</span></h1>
@@ -23,27 +32,27 @@
                 <div class="tarot-card"><i class="fas fa-gem"></i></div>
             </div>
         </header>
-        
+
         <main class="main-content">
             <div class="game-logo">
                 <div class="logo-symbol">M&M</div>
                 <div class="logo-text">Em homenagem ao D&D</div>
             </div>
-            
+
             <div class="menu-options">
                 <a href="tutorial.html" class="menu-btn play-btn">
                     <i class="fas fa-play"></i> Iniciar Jornada
                 </a>
-                
+
                 <button id="aboutBtn" class="menu-btn about-btn">
                     <i class="fas fa-scroll"></i> Sobre a Missão
                 </button>
-                
+
                 <a href="fase1.html" class="menu-btn skip-btn">
                     <i class="fas fa-forward"></i> Pular Tutorial
                 </a>
             </div>
-            
+
             <div class="game-info">
                 <div class="info-card">
                     <i class="fas fa-lock"></i>
@@ -63,33 +72,40 @@
             </div>
         </main>
     </div>
-    
+
     <!-- Modal Sobre -->
     <div id="aboutModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2><i class="fas fa-scroll"></i> A História da Missão Mística</h2>
             <div class="modal-body">
-                <p>Em um mundo onde o conhecimento arcano e a matemática se entrelaçam, uma antiga sociedade secreta precisa de sua ajuda para desvendar mensagens codificadas que escondem segredos poderosos.</p>
-                
-                <p>Como um noviço na <strong>Ordem dos Criptógrafos Místicos</strong>, você deve usar suas habilidades em cifras e matrizes para decifrar os enigmas deixados pelos antigos mestres.</p>
-                
+                <p>Em um mundo onde o conhecimento arcano e a matemática se entrelaçam, uma antiga sociedade secreta
+                    precisa de sua ajuda para desvendar mensagens codificadas que escondem segredos poderosos.</p>
+
+                <p>Como um noviço na <strong>Ordem dos Criptógrafos Místicos</strong>, você deve usar suas habilidades
+                    em cifras e matrizes para decifrar os enigmas deixados pelos antigos mestres.</p>
+
                 <p><strong>Sua jornada:</strong></p>
                 <ul>
-                    <li><i class="fas fa-key"></i> <strong>Tutorial e Fase 1:</strong> Domine a Cifra de César para decifrar "Tutorial" e "Última frase"</li>
-                    <li><i class="fas fa-chess-board"></i> <strong>Fases 2 e 3:</strong> Use matrizes 2x2 para decodificar "Ao contrário" e "aditrevni errot a"</li>
-                    <li><i class="fas fa-cards"></i> <strong>Cartas de Tarot:</strong> Colete cartas místicas que revelam pistas e ampliam seus poderes</li>
+                    <li><i class="fas fa-key"></i> <strong>Tutorial e Fase 1:</strong> Domine a Cifra de César para
+                        decifrar "Tutorial" e "Última frase"</li>
+                    <li><i class="fas fa-chess-board"></i> <strong>Fases 2 e 3:</strong> Use matrizes 2x2 para
+                        decodificar "Ao contrário" e "aditrevni errot a"</li>
+                    <li><i class="fas fa-cards"></i> <strong>Cartas de Tarot:</strong> Colete cartas místicas que
+                        revelam pistas e ampliam seus poderes</li>
                 </ul>
-                
-                <p>Cada mensagem decifrada lhe trará mais perto de desvendar o segredo final e se tornar um verdadeiro Mestre da Criptografia Mística.</p>
-                
+
+                <p>Cada mensagem decifrada lhe trará mais perto de desvendar o segredo final e se tornar um verdadeiro
+                    Mestre da Criptografia Mística.</p>
+
                 <div class="modal-footer">
                     <p><em>"A matemática é a linguagem com a qual os deuses escreveram o universo."</em></p>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="JS/script.js"></script>
 </body>
+
 </html>

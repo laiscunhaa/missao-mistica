@@ -187,6 +187,11 @@
     </style>
 </head>
 <body>
+     <audio controls>
+        <source src="videoplayback (1).mp3" type="audio/mpeg">
+        <source src="videoplayback (1).mp3" type="audio/ogg">
+        Seu navegador não suporta áudio.
+    </audio>
     <div class="phase-container">
         <header class="game-header">
             <h1 class="phase-title">Fase 2: Criptografia Matricial</h1>
@@ -239,28 +244,14 @@
                         <span style="font-family: monospace;">[y']   [c d] [y]</span>
                     </p>
                     
-                    <table class="reference-table">
-                        <thead>
-                            <tr>
-                                <th>Letra</th>
-                                <th>Número</th>
-                                <th>Letra</th>
-                                <th>Número</th>
-                                <th>Letra</th>
-                                <th>Número</th>
-                            </tr>
-                        </thead>
-                        <tbody id="alphabetTableBody">
-                            <!-- A tabela será preenchida por JavaScript -->
-                        </tbody>
-                    </table>
+                    <img src = "IMAGE/tabela.png">
                 </div>
                 
                 <div class="puzzle-area">
                     <h3 class="puzzle-title"><i class="fas fa-lock"></i> Mensagem Criptografada:</h3>
                     <div class="puzzle-box">
-                        <div class="encrypted-text" id="encryptedText">JMDASCPOGB</div>
-                        <p class="hint-text">Esta mensagem foi cifrada usando uma matriz 2x2. A mensagem original é "AOCONTRARIO" (11 letras).</p>
+                       <img src = "IMAGE/mensagemfase2.png">
+                        <p class="hint-text">Esta mensagem foi cifrada usando uma matriz 2x2.</p>
                     </div>
                 </div>
                 
@@ -284,9 +275,6 @@
                     <div class="button-group">
                         <button class="game-btn decrypt-btn" onclick="checkMatrixSolution()">
                             <i class="fas fa-key"></i> Decifrar
-                        </button>
-                        <button class="game-btn hint-btn" onclick="showCalculationExample()">
-                            <i class="fas fa-calculator"></i> Ver Cálculo
                         </button>
                     </div>
                     
